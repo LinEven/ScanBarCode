@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input id="myInput" placeholder="請掃描條碼" />
+
+    <!-- <button id="myBtn" onclick="javascript:alert('test value!')">-->
+    <button id="myBtn" onclick="GetScanStrAndShowUI()">Button</button>
+
+    <!--顯示掃描數據(測試)-->
+    <p id="id_show"></p>
+
+    <script language="javascript">
+      var input = document.getElementById("myInput");
+      input.addEventListener("keyup", function (event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          document.getElementById("myBtn").click();
+        }
+      });
+
+      /*接收掃描數據並更新至UI*/
+      function GetScanStrAndShowUI() {
+        var str = document.getElementById("myInput").value;
+
+        document.getElementById("myInput").value = "";
+        document.getElementById("myInput").focus();
+        AddScanResult("接收數據：" + str);
+      }
+
+      /*將掃描數據更新至UI*/
+      function AddScanResult(a) {
+        var node = document.createElement("p");
+        var textnode = document.createTextNode(a);
+        node.appendChild(textnode);
+        document.getElementById("id_show").appendChild(node);
+      }
+    </script>
+  </body>
+</html>
